@@ -1,0 +1,58 @@
+#include <avr/sleep.h>
+#include <avr/interrupt.h>
+
+const int switchPin = 3;
+const int ledPin = 8;
+
+volatile bool ledState = false;
+volatile bool buttonPressed = false;
+
+unsigned long lastActivityTime = 0;
+const unsigned long inactivityDelay = 10000;
+
+void setup() {
+  pinMode(ledPin, OUTPUT);
+  digitalWrite(ledPin, LOW);
+
+  pinMode(switchPin, INPUT_PULLUP);
+
+  Serial.begin(9600);
+  Serial.println("System started. Waiting for button press...");
+
+  attachInterrupt(digitalPinToInterrupt(switchPin), wakeUp, FALLING);
+
+  lastActivityTime = millis();
+}
+
+void loop() {
+  if (buttonPressed) {
+    ledState = !ledState;
+    digitalWrite(ledPin, ledState ? HIGH : LOW);
+
+    Serial.print("Button pressed, LED is now: ");
+    Serial.println(ledState ? "ON" : "OFF");
+
+    buttonPressed = false;
+    lastActivityTime = millis();
+    delay(200);
+  }
+
+  if (millis() - lastActivityTime > inactivityDelay) {
+    digitalWrite(ledPin, LOW);     // ← هذا السطر يطفي الليد
+    ledState = false;
+    Serial.println("No activity detected. Going to sleep...");
+    goToSleep();
+    lastActivityTime = millis();
+  }
+}
+
+void goToSleep() {
+  set_sleep_mode(SLEEP_MODE_PWR_DOWN);
+  sleep_enable();
+  sleep_mode();
+  sleep_disable();
+}
+
+void wakeUp() {
+  buttonPressed = true;
+}
