@@ -20,9 +20,13 @@ LED
 Jumper wires
 
 
+# the circuit 
+
+<img width="722" height="350" alt="Image" src="https://github.com/user-attachments/assets/530067f3-eb70-4a78-9c3e-14927559b845" />
+
+
 
  # Circuit Connections
-
  
 
 Push Button:
@@ -40,9 +44,9 @@ Anode (long leg) → Arduino pin 8 (D8) through 220Ω resistor
 Cathode (short leg) → GND
 
 
-# the circuit 
+# Reverence 
 
-
+https://youtu.be/UkKtalYsDws
 
 
 
