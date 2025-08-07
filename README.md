@@ -21,6 +21,47 @@ Jumper wires
 
 
 
+ # Circuit Connections
+
+ 
+
+Push Button:
+
+One terminal → Arduino pin 3 (D3)
+
+Other terminal → 5V
+
+10kΩ resistor connected between pin 3 (D3) and GND (acting as a pull-down resistor)
+
+LED:
+
+Anode (long leg) → Arduino pin 8 (D8) through 220Ω resistor
+
+Cathode (short leg) → GND
+
+
+# the circuit 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
