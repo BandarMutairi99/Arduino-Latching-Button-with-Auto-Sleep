@@ -7,7 +7,7 @@ Arduino. The LED toggles its state (ON/OFF) with each button press. If no intera
 #  Components Used
 
 
-Arduino Uno (or compatible)
+Arduino Uno 
 
 Push button
 
